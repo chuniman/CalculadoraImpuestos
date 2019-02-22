@@ -1,220 +1,252 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="aca vas poder ver como se te va tu dinero por el drenaje estatal">
-    <meta name="author" content="yo obviamente">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="aca vas poder ver como se te va tu dinero por el drenaje estatal"
+    />
+    <meta name="author" content="yo obviamente" />
 
     <title>calculadora Impositiva</title>
 
     <!-- CSS de Bootstrap -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
 
     <!-- CSS Propio -->
     <!--  <link rel="stylesheet" href="css/styles.css">-->
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <div id="impuestos">
-        <div class="container">
-            <div class="row">
-                <!-- salario nominal -->
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="name">
-                            salario nominal
-                        </label>
-                        <input type="text" id="salNom" v-model="nominal" name="name" value="" class="form-control" placeholder="Ingresar salario nominal">
-                    </div>
-                    <div class="form-group">
-                        <!-- tiene hijos-->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkHijos">
-                            <label class="form-check-label" for="checkHijos">
-                                tiene hijos menores?
-                            </label>
-                        </div>
-                        <!-- tiene hijos descapacitados-->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkDiscapacitados">
-                            <label class="form-check-label" for="checkDiscapacitados">
-                                tiene hijos Discapacitados?
-                            </label>
-                        </div>
-                        <!-- tiene concubina a cargo-->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkPareja">
-                            <label class="form-check-label" for="checkPareja">
-                                tiene pareja?
-                            </label>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- fondo de soliridad -->
-                <!-- BPC: 3.848 -->
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="select-fondo">Año</label>
-                        <select id="select-fondo" class="form-control input-sm" name="fondo" v-model="FondoSol">
-                            <option value="0">Seleccionar...</option>
-                            <option value="1924">0.5 BPC</option>
-                            <option value="3848">1 BPC</option>
-                            <option value="7696">2 BPC</option>
-                        </select>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="6413" id="checkFondo">
-                        <label class="form-check-label" for="checkFondo">
-                            Carrera mayor a 5 años?
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <!-- caja de los profesionales-->
-                        <input class="form-check-input" type="checkbox" id="checkCaja">
-                        <label class="form-check-label" for="checkCaja">
-                            aportas a la caja de los profesionales?
-                        </label>
-                    </div>
-                    <button id="calcular">calcular</button>
-                </div>
-
+      <div class="container">
+        <div class="row">
+          <!-- salario nominal -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="name">
+                salario nominal
+              </label>
+              <input
+                type="text"
+                id="salNom"
+                v-model="nominal"
+                name="name"
+                value=""
+                class="form-control"
+                placeholder="Ingresar salario nominal"
+              />
             </div>
-
-            <div class="row">
-                <h3>Pero el Empleador esta pagando en verdad
-                    <strong v-model="EmpMoney">{{EmpMoney}}</strong>
-                </h3>
-
-                <div class="col-md-2">
-                    <label class="form-check-label">
-                        BPS:
-                    </label>
-                    <label v-model="bpsEmp" class="form-check-label">
-                        {{bpsEmp}}
-                    </label>
-                </div>
-                <div class="col-md-3">
-
-                    <label class="form-check-label">
-                        FONASA:
-                    </label>
-                    <label v-model="fonEmp" class="form-check-label">
-                        {{fonEmp}}
-                    </label>
-                </div>
-                <div class="col-md-2">
-                    <label class="form-check-label">
-                        FRL:
-                    </label>
-                    <label v-model="frlEmp" class="form-check-label">
-                        {{frlEmp}}
-                    </label>
-                </div>
+            <div class="form-group">
+              <!-- tiene hijos-->
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="checkHijos"
+                />
+                <label class="form-check-label" for="checkHijos">
+                  tiene hijos menores?
+                </label>
+              </div>
+              <!-- tiene hijos descapacitados-->
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="checkDiscapacitados"
+                />
+                <label class="form-check-label" for="checkDiscapacitados">
+                  tiene hijos Discapacitados?
+                </label>
+              </div>
+              <!-- tiene concubina a cargo-->
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="checkPareja"
+                />
+                <label class="form-check-label" for="checkPareja">
+                  tiene pareja?
+                </label>
+              </div>
             </div>
-            <div class="row">
-                <h3>Asi que luego de eso y de los impuestos que le tocan a usted le queda:
-                    <strong v-model="EmpMoney"> {{TraMoney}} </strong>
-                </h3>
-                <div class="col-md-3">
-                    <label class="form-check-label">
-                        BPS:
-                    </label>
-                    <label v-model="bpsTra" class="form-check-label">
-                        {{bpsTra}}
-                    </label>
-
-                    <div>
-                        <label class="form-check-label">
-                            Fondo Soliridad:
-                        </label>
-                        <label v-model="sumaFondo" class="form-check-label">
-                            {{sumaFondo}}
-                        </label>
-                    </div>
-
-                </div>
-
-                <div class="col-md-3">
-
-                    <label class="form-check-label">
-                        FONASA:
-                    </label>
-                    <label v-model="fonTra" class="form-check-label">
-                        {{fonTra}}
-                    </label>
-
-                    <div>
-                        <label class="form-check-label">
-                            Caja de los Profesionales:
-                        </label>
-                        <label v-model="sumaFondo" class="form-check-label">
-                            {{CajaProf}}
-                        </label>
-                    </div>
-
-                </div>
-                
-                <div class="col-md-2">
-                    <label class="form-check-label">
-                        FRL:
-                    </label>
-                    <label v-model="frlTra" class="form-check-label">
-                        {{frlTra}}
-                    </label>
-                </div>
+          </div>
+          <!-- fondo de soliridad -->
+          <!-- BPC: 3.848 -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="select-fondo">Año</label>
+              <select
+                id="select-fondo"
+                class="form-control input-sm"
+                name="fondo"
+                v-model="FondoSol"
+              >
+                <option value="0">Seleccionar...</option>
+                <option value="1924">0.5 BPC</option>
+                <option value="3848">1 BPC</option>
+                <option value="7696">2 BPC</option>
+              </select>
             </div>
-            <div class="row">
-                <h3 v-model="irpf">y luego de pagar {{irpf}} de irpf quedan </h3>
-                <h3>
-                    <strong v-model="IrMoney"> {{IrMoney}} </strong>
-                </h3>
-                <h3>eso si tene en cuenta que
-                    <strong v-model="ivaDinero"> {{ivaDinero}} </strong>
-                    se te van por el iva </h3>
-                <h3>el estado se quedo entonces con el 
-                    <strong v-model="porcentajeSubFinal"> {{porcentajeSubFinal}} % </strong>
-                    de tu plata,
-                    <strong v-model="porcentajeFinal"> {{porcentajeFinal}} % </strong>
-                    si tomas en cuenta el iva 
-                </h3>                
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="6413"
+                id="checkFondo"
+              />
+              <label class="form-check-label" for="checkFondo">
+                Carrera mayor a 5 años?
+              </label>
             </div>
-            <canvas id="myChart" width="40%" ></canvas>
+            <div class="form-check">
+              <!-- caja de los profesionales-->
+              <input class="form-check-input" type="checkbox" id="checkCaja" />
+              <label class="form-check-label" for="checkCaja">
+                aportas a la caja de los profesionales?
+              </label>
+            </div>
+            <button id="calcular">calcular</button>
+          </div>
         </div>
+
+        <div class="row">
+          <h3>
+            Pero el Empleador esta pagando en verdad
+            <strong v-model="EmpMoney">{{ EmpMoney }}</strong>
+          </h3>
+
+          <div class="col-md-2">
+            <label class="form-check-label">
+              BPS:
+            </label>
+            <label v-model="bpsEmp" class="form-check-label">
+              {{ bpsEmp }}
+            </label>
+          </div>
+          <div class="col-md-3">
+            <label class="form-check-label">
+              FONASA:
+            </label>
+            <label v-model="fonEmp" class="form-check-label">
+              {{ fonEmp }}
+            </label>
+          </div>
+          <div class="col-md-2">
+            <label class="form-check-label">
+              FRL:
+            </label>
+            <label v-model="frlEmp" class="form-check-label">
+              {{ frlEmp }}
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <h3>
+            Asi que luego de eso y de los impuestos que le tocan a usted le
+            queda:
+            <strong v-model="EmpMoney"> {{ TraMoney }} </strong>
+          </h3>
+          <div class="col-md-3">
+            <label class="form-check-label">
+              BPS:
+            </label>
+            <label v-model="bpsTra" class="form-check-label">
+              {{ bpsTra }}
+            </label>
+
+            <div>
+              <label class="form-check-label">
+                Fondo Soliridad:
+              </label>
+              <label v-model="sumaFondo" class="form-check-label">
+                {{ sumaFondo }}
+              </label>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-check-label">
+              FONASA:
+            </label>
+            <label v-model="fonTra" class="form-check-label">
+              {{ fonTra }}
+            </label>
+
+            <div>
+              <label class="form-check-label">
+                Caja de los Profesionales:
+              </label>
+              <label v-model="sumaFondo" class="form-check-label">
+                {{ CajaProf }}
+              </label>
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <label class="form-check-label">
+              FRL:
+            </label>
+            <label v-model="frlTra" class="form-check-label">
+              {{ frlTra }}
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <h3 v-model="irpf">y luego de pagar {{ irpf }} de irpf quedan</h3>
+          <h3>
+            <strong v-model="IrMoney"> {{ IrMoney }} </strong>
+          </h3>
+          <h3>
+            eso si tene en cuenta que
+            <strong v-model="ivaDinero"> {{ ivaDinero }} </strong>
+            se te van por el iva
+          </h3>
+          <h3>
+            el estado se quedo entonces con el
+            <strong v-model="porcentajeSubFinal">
+              {{ porcentajeSubFinal }} %
+            </strong>
+            de tu plata,
+            <strong v-model="porcentajeFinal"> {{ porcentajeFinal }} % </strong>
+            si tomas en cuenta el iva
+          </h3>
+        </div>
+        <div id="chart">
+          <canvas id="myChart" width="40%"></canvas>
+        </div>
+      </div>
     </div>
-
-
-
-
-
-
-
-
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-
     <!-- JS de Bootstrap -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
 
     <!-- JS de Vue.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
 
-    <!-- JS Propio -->
-    <script src="js/app.js"> </script>
-
     <!-- JS Chart.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-</body>
 
+    <!-- JS Propio -->
+    <script src="js/app.js"></script>
+  </body>
 </html>

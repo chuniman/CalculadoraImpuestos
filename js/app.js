@@ -67,6 +67,10 @@ $("#calcular").on("click", function() {
   if (document.getElementById("checkCaja").checked) {
     impApp.CajaProf = nominal * 0.165;
   }
+  else{
+    impApp.CajaProf = 0;
+  }
+
 
   impApp.TraMoney =
     nominal -
@@ -144,6 +148,11 @@ $("#calcular").on("click", function() {
   let irpfPorc=(impApp.irpf/nominal)*100;
   let ivaPorc=(impApp.ivaDinero/nominal)*100;
   let finalMoney=(((impApp.IrMoney - impApp.ivaDinero)/nominal))*100;
+
+
+  $("#myChart").remove();
+
+  $("#chart").append('<canvas id="myChart" width="40%"></canvas>')
 
   var ctx = document.getElementById("myChart");
 
