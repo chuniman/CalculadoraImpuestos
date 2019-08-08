@@ -93,7 +93,7 @@ $("#calcular").on("click", function() {
 
     var cont = 0;
     for (let i = 0; i < franjas.length; i++) {
-      if (neoSalario > franjas[i]) {
+      if (neoSalario > franjas[i] && i<6) {
         cont++;
       }
     }
